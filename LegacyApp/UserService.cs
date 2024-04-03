@@ -20,16 +20,7 @@ namespace LegacyApp
         }
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
-            {
-                return false;
-            }
-
-            if (!email.Contains("@") && !email.Contains("."))
-            {
-                return false;
-            }
-
+            if (!CheckUserData(firstName, lastName, email)) return false;
             if (!CheckAge(dateOfBirth)) return false;
 
             
@@ -72,6 +63,12 @@ namespace LegacyApp
             int age = now.Year - dateOfBirth.Year;
             if (now.Month < dateOfBirth.Month || (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)) age--;
             if (age < 21) return false;
+            return true;
+        }
+        public bool CheckUserData(string FirstName, string LastName, string EmailAddress)
+        {
+            if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName)) return false;
+            if (!EmailAddress.Contains("@") || !EmailAddress.Contains(".")) return false;
             return true;
         }
     }
