@@ -12,12 +12,7 @@ namespace LegacyApp
             _clientRepository = new ClientRepository();
             _creditLimitService = new UserCreditService();
         }
-        public UserService(IClientRepository clientRepository, ICreditLimitService creditService)
-        {
-            _clientRepository = clientRepository;
-            _creditLimitService = creditService;
-            
-        }
+
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
             if (!CheckUserData(firstName, lastName, email)) return false;
