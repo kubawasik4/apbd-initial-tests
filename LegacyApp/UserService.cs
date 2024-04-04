@@ -23,11 +23,8 @@ namespace LegacyApp
 
             var user = new User().CreateUser(client, dateOfBirth, email, firstName, lastName);
             user.SetCreditLimit(_creditLimitService, client);
-            
-            if (user.HasCreditLimit && user.CreditLimit < 500)
-            {
-                return false;
-            }
+
+            if (!user.ValidationCreditLimit()) return false;
 
             UserDataAccess.AddUser(user);
             return true;

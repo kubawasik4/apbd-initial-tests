@@ -35,5 +35,10 @@ namespace LegacyApp
                 CreditLimit = creditLimit;
             }
         }
+        public bool ValidationCreditLimit()
+        {
+            if (HasCreditLimit && CreditLimit < 500) return false;
+            return true;
+        }
     }
 }
