@@ -27,27 +27,7 @@ namespace LegacyApp
             var client = _clientRepository.GetById(clientId);
 
             var user = new User().CreateUser(client, dateOfBirth, email, firstName, lastName);
-            
-            if (client.Type == "VeryImportantClient")
-            {
-                user.HasCreditLimit = false;
-            }
-            else if (client.Type == "ImportantClient")
-            {
-                
-                    int creditLimit = _creditLimitService.GetCreditLimit(user.LastName, user.DateOfBirth);
-                    creditLimit = creditLimit * 2;
-                    user.CreditLimit = creditLimit;
-                
-            }
-            else
-            {
-                user.HasCreditLimit = true;
-                
-                    int creditLimit = _creditLimitService.GetCreditLimit(user.LastName, user.DateOfBirth);
-                    user.CreditLimit = creditLimit;
-                
-            }
+            user.SetCreditLimit(_creditLimitService, client);
             
             if (user.HasCreditLimit && user.CreditLimit < 500)
             {
