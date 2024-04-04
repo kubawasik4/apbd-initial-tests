@@ -35,10 +35,10 @@ namespace LegacyApp
             if (age < 21) return false;
             return true;
         }
-        public bool CheckUserData(string FirstName, string LastName, string EmailAddress)
+        public bool CheckUserData(string firstName, string LastName, string email)
         {
-            if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName)) return false;
-            if (!EmailAddress.Contains("@") || !EmailAddress.Contains(".")) return false;
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(LastName)) return false;
+            if (!email.Contains("@") || !email.Contains(".")) return false;
             return true;
         }
     }
