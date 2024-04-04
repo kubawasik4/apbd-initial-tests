@@ -17,13 +17,11 @@ namespace LegacyApp
         {
             if (!CheckUserData(firstName, lastName, email)) return false;
             if (!CheckAge(dateOfBirth)) return false;
-
             
             var client = _clientRepository.GetById(clientId);
-
             var user = new User().CreateUser(client, dateOfBirth, email, firstName, lastName);
+            
             user.SetCreditLimit(_creditLimitService, client);
-
             if (!user.ValidationCreditLimit()) return false;
 
             UserDataAccess.AddUser(user);

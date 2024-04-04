@@ -15,7 +15,6 @@ namespace LegacyApp
         {
             return new User {Client = client, DateOfBirth = dateOfBirth, EmailAddress = email, FirstName = firstName, LastName = lastName};
         }
-
         public void SetCreditLimit(ICreditLimitService creditLimitService, Client client)
         {
             if (client.Type == "VeryImportantClient")
